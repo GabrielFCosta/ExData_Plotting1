@@ -12,13 +12,11 @@ datetimes <- paste(dates,times,sep = " ")
 datetimes <-strptime(datetimes,"%Y-%m-%d %H:%M:%S")
 
 ## Plotting Line Graph
+png(file="plot3.png", width = 480, height = 480)
 plot(datetimes, power_feb2$Sub_metering_1,type = "l", ylab =  "Energy sub metering", xlab = "")
 lines(datetimes, power_feb2$Sub_metering_2, col = "red")
 lines(datetimes, power_feb2$Sub_metering_3, col = "blue")
 ## Adding legend
-legend("topright", col = c("black","red","blue"),legend = c("Sub_metering_1 ","Sub_metering_2 ","Sub_metering_3 "),lty=1,y.intersp = 0.5)
-
-## Copies graph to .png
-## Note: Day names in the x axis in Portuguese (my system´s language)
-dev.copy(png, file = "plot3.png", width = 480, height = 480)
+legend("topright", col = c("black","red","blue"),legend = c("Sub_metering_1 ","Sub_metering_2 ","Sub_metering_3 "),lty=1)
 dev.off()
+## Note: Day names in the x axis in Portuguese (my system´s language)

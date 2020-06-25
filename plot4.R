@@ -11,22 +11,21 @@ dates <-as.Date(dates,"%d/%m/%Y")
 datetimes <- paste(dates,times,sep = " ")
 datetimes <-strptime(datetimes,"%Y-%m-%d %H:%M:%S")
 
-## Plotting Graphs on Windows
-windows(height = 480, width = 480)
-par(mfcol = c(2, 2))
+## Plotting graphs
+png(file="plot4.png", width = 480, height = 480)
+par(mfcol = c(2, 2), mar = c(4, 4, 2, 1), oma = c(0, 0, 2, 0))
 ## first graph
 plot(datetimes, power_feb2$Global_active_power,type = "l", ylab =  "Global Active Power", xlab = "")
 ## second graph
 plot(datetimes, power_feb2$Sub_metering_1,type = "l", ylab =  "Energy sub metering", xlab = "")
 lines(datetimes, power_feb2$Sub_metering_2, col = "red")
 lines(datetimes, power_feb2$Sub_metering_3, col = "blue")
-legend("topright", col = c("black","red","blue"),legend = c("Sub_metering_1 ","Sub_metering_2 ","Sub_metering_3 "),lty=1,bty = "n",cex = 0.7)
+legend("topright", col = c("black","red","blue"),legend = c("Sub_metering_1 ","Sub_metering_2 ","Sub_metering_3 "),lty=1,bty="n")
 ## third graph
 plot(datetimes, power_feb2$Voltage,type = "l", ylab =  "Voltage", xlab = "datetime")
 ## fourth graph
 plot(datetimes,power_feb2$Global_reactive_power,type = "l", ylab = "Global_reactive_power", xlab = "datetime")
-
-## Copies graph to .png
-## Note: Day names in the x axis in Portuguese (my system´s language)
-dev.copy(png, file = "plot4.png")
 dev.off()
+## Note: Day names in the x axis in Portuguese (my system´s language)
+
+
